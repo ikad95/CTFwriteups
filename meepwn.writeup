@@ -18,6 +18,9 @@ find that jackpot is completey random number generated at runtime and a
 comparison "$obj->enter === $obj->jackpot" is made to reveal the flag.
 The flag is inaccessible since it is stored in another file secret.php. 
 We see that the password is unguessable and the only way the above 
-condition could be met is if "obj>enter" is a reference of "obj->jackpot". We tried creating our own php object with "$obj->enter = &$obj->jackpot" from our local php console and encoded it to base64 and voila we got the flag.
+condition could be met is if "obj>enter" is a reference of "obj->jackpot". 
+We tried creating our own php object with "$obj->enter = &$obj->jackpot" 
+from our local php console and encoded it to base64 and voila we got the 
+flag.
 
 MeePwnCTF{__OMG!!!__Y0u_Are_Milli0naire_N0ww!!___}
