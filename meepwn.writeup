@@ -1,0 +1,10 @@
+Introduction:
+	This is a write-up for MeePwn CTF 2017 from Wizards of OS, This write-up describes the walk through for all the challenges thatwe have comleted during the competition.
+
+Walkthrough:
+	Problem TSULOTT : The page appears to be normal page with no vulnurabilities. The second text box takes lotto numbers and outputs a base64 encoded text. On decoding the base64 we find it is a serialized php object containing two variables, 'enter' as user input and 'jackpot' as null. On inspecting the source we found a commented line 
+	<!-- GET is_debug=1 -->
+Seems like the developer forgot to edit out this line. Appending ?is_debug=1 to the url we find the page shows the php source. On further inspection we find that jackpot is completey random number generated at runtime and a comparison "obj->enter === obj->jackpot" is made to select reveal flag. The flag is inaccessible since it is stored in another file secret.php. 
+We see that the password is unguessable and the only way the condition is met is if "obj>enter" is a reference of "obj->jackpot". We tried creating our own php object with "$obj->enter = &$obj->jackpot" from our local php console and encoded it to base64 and voila we got the flag.
+
+MeePwnCTF{__OMG!!!__Y0u_Are_Milli0naire_N0ww!!___}
